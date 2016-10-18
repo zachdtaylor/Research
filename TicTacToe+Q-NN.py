@@ -1,3 +1,4 @@
+# The AI class uses the neural network. The Computer class uses Q tables.
 
 # coding: utf-8
 
