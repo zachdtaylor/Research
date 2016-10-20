@@ -2,8 +2,6 @@
 
 # coding: utf-8
 
-# In[4]:
-
 import numpy as np
 import pandas as pd
 import random
@@ -13,13 +11,7 @@ import keras
 from keras.models import Sequential
 from keras.layers import Dense, Activation, core
 
-
-# In[5]:
-
 board = "| {0} | {1} | {2} |\n-------------\n| {3} | {4} | {5} |\n-------------\n| {6} | {7} | {8} |"
-
-
-# In[29]:
 
 model = Sequential()
 
@@ -31,9 +23,6 @@ model.add(Dense(output_dim=9))
 model.add(Activation('sigmoid'))
 
 model.compile(loss='categorical_crossentropy', optimizer='sgd')
-
-
-# In[30]:
 
 def tie(state):
     if 0 not in state and not win(state,1) and not win(state,2): 
@@ -49,9 +38,6 @@ def win(state, token):
     if token == state[2] == state[5] == state[8]: return True
     if token == state[0] == state[4] == state[8]: return True
     if token == state[6] == state[4] == state[2]: return True
-
-
-# In[31]:
 
 class Computer(object):
     def __init__(self):
@@ -136,14 +122,8 @@ class Computer(object):
     def getType(self):
         return "Computer"
 
-
-# In[9]:
-
 C = Computer()
 C.learn(games = 225000, lrate = .2, discfac = 1, epsilon = .1) 
-
-
-# In[32]:
 
 class AI:
     def __init__(self):
@@ -294,9 +274,6 @@ class AI:
     def getType(self):
         return "Computer"
 
-
-# In[33]:
-
 class Human:
     def getType(self):
         return "Human"
@@ -307,9 +284,6 @@ class Human:
             return move-1
         else:
             raise ValueError("Entry must be a number between 1 and 9")
-
-
-# In[34]:
 
 class TicTacToe:
     def play(self, player1, player2):
@@ -335,26 +309,11 @@ class TicTacToe:
                 print ("%s wins!" % player2_type)
                 break
 
-
-# In[35]:
-
 CPU = AI()
 CPU.learn(games = 10000, discfac = .9, epsilon = 0)
-
-
-# In[37]:
 
 Me = Human()
 T = TicTacToe()
 T.play(CPU, Me)
 
-
-# In[28]:
-
 model.predict(np.array([0,0,0,2,0,1,0,2,1]).reshape(1,9))
-
-
-# In[ ]:
-
-
-
